@@ -15,9 +15,10 @@ spec:
       containers:
         - name: starter-app
           image: starter-app:1.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://mysql-service:3306/starterdb
@@ -25,3 +26,28 @@ spec:
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
               value: password
+
+          # ✅ Liveness Probe
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          # ✅ Readiness Probe
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          # ✅ Resource Limits (Important for real clusters)
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

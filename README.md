@@ -110,7 +110,6 @@ Build and start:
 
 docker-compose up --build
 
-
 Application will be available at:
 
 http://localhost:8080

@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("${api.base-path:/api/v1}/users")
 public class UserController {
 	
 	public static final Logger logger = LoggerFactory.getLogger(UserController.class);

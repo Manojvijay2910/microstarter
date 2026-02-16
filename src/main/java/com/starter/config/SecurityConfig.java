@@ -29,7 +29,7 @@ public class SecurityConfig {
 	    	.cors(cors -> cors.configurationSource(corsSource)) // Enable CORS using global CorsConfiguration
 	        .csrf(csrf -> csrf.disable()) // Disable CSRF for APIs (common for JWT)
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**", "/api/users/active")
+                    .requestMatchers("/swagger/**", "/v3/api-docs/**", "/swagger-ui/**", "/actuator/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated()
