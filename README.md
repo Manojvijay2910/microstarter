@@ -100,7 +100,6 @@ spring.datasource.url=jdbc:mysql://localhost:3306/starterdb
 spring.datasource.username=root
 spring.datasource.password=password
 
-
 Then run:
 
 mvn spring-boot:run
