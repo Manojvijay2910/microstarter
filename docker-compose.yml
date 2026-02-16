@@ -1,0 +1,14 @@
+services:
+  starter-app:
+    build: .
+    container_name: starter-app
+    ports:
+      - "8080:8080"
+    environment:
+      # Point to local MySQL on host machine
+      SPRING_DATASOURCE_URL: jdbc:mysql://${HOST_IP:-host.docker.internal}:3306/starterdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+    restart: unless-stopped
